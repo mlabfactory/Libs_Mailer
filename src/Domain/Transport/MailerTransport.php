@@ -21,14 +21,13 @@ class MailerTransport extends AbstractTransportFactory
     private string $password;
     private int $port;
     private bool $tls = false;
+    private ?\Psr\Log\LoggerInterface $logger;
 
-    public function __construct()
+    public function __construct(string|bool $tls = false, int $port = 587, ?\Psr\Log\LoggerInterface $logger = null)
     {
-        $this->host = env('MAIL_HOST');
-        $this->username = env('MAIL_USERNAME');
-        $this->password = env('MAIL_PASSWORD');
-        $this->port = env('MAIL_PORT', 587);
-        $this->tls = env('MAIL_ENCRYPTION', 'tls') === 'tls';
+        $this->port = $port;
+        $this->tls = $tls === 'tls';
+        $this->logger = $logger;
 
         parent::__construct();
     }
@@ -45,14 +44,14 @@ class MailerTransport extends AbstractTransportFactory
     public function create(Dsn $dsn): TransportInterface
     {
         $scheme = $dsn->getScheme();
-        $user = empty($this->getUser($dsn)) ? $this->username : $this->getUser($dsn);
-        $password = empty($this->getPassword($dsn)) ? $this->password : $this->getPassword($dsn);
+        $user = $this->getUser($dsn);
+        $password = $this->getPassword($dsn);
         $host = 'default' === $dsn->getHost() ? null : $dsn->getHost();
         $sandbox = filter_var($dsn->getOption('sandbox', false), \FILTER_VALIDATE_BOOL);
 
         switch ($scheme) {
             case 'exchange':
-                return new ExchangeSmtp($host, $user, $password, $this->port, $this->tls, $this->dispatcher, $this->logger);
+                return new ExchangeSmtp($host, $user, $password, $this->port, $this->tls, null, $this->logger);
             case 'mailhog':
                 return new MailhogSmtp($host, $user, $password, 1025, false);
         }
