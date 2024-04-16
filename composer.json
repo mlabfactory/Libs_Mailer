@@ -22,5 +22,5 @@
             "email": "marco.defelice@budgetcontrol.cloud"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Isaia\App\Mailer\Exception;
+namespace Budgetcontrol\SdkMailer\Exception;
 
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
