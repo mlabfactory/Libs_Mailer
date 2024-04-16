@@ -23,7 +23,7 @@ class MailerTransport extends AbstractTransportFactory
     private bool $tls = false;
     private ?\Psr\Log\LoggerInterface $logger;
 
-    public function __construct(string|bool $tls = false, int $port = 587, ?\Psr\Log\LoggerInterface $logger = null)
+    public function __construct(string $tls = 'false', int $port = 587, ?\Psr\Log\LoggerInterface $logger = null)
     {
         $this->port = $port;
         $this->tls = $tls === 'tls';
@@ -34,7 +34,7 @@ class MailerTransport extends AbstractTransportFactory
 
     protected function getSupportedSchemes(): array
     {
-        return ['exchange','mailhog'];
+        return ['exchange','mailhog', 'aruba'];
     }
 
     /**
@@ -54,6 +54,8 @@ class MailerTransport extends AbstractTransportFactory
                 return new ExchangeSmtp($host, $user, $password, $this->port, $this->tls, null, $this->logger);
             case 'mailhog':
                 return new MailhogSmtp($host, $user, $password, 1025, false);
+            case 'aruba':
+                return new ArubaSmtp($host, $user, $password, 465, 'tls', $this->logger);
         }
 
 
