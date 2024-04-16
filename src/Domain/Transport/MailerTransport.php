@@ -2,6 +2,7 @@
 
 namespace Budgetcontrol\SdkMailer\Domain\Transport;
 
+use Monolog\Logger;
 use Symfony\Component\Mailer\Transport\Dsn;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mailer\Transport\AbstractTransportFactory;
@@ -16,18 +17,15 @@ use Symfony\Component\Mailer\Exception\UnsupportedSchemeException;
 
 class MailerTransport extends AbstractTransportFactory
 {
-    private string $host;
-    private string $username;
-    private string $password;
     private int $port;
     private bool $tls = false;
-    private ?\Psr\Log\LoggerInterface $logger;
+    protected ?\Psr\Log\LoggerInterface $logger;
 
-    public function __construct(string $tls = 'false', int $port = 587, ?\Psr\Log\LoggerInterface $logger = null)
+    public function __construct(string $tls = 'false', int $port = 587)
     {
         $this->port = $port;
         $this->tls = $tls === 'tls';
-        $this->logger = $logger;
+        $this->logger = new Logger('mailer');
 
         parent::__construct();
     }

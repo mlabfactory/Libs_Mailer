@@ -3,9 +3,9 @@ namespace Budgetcontrol\SdkMailer\View\Render;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Budgetcontrol\SdkMailer\Exception\ViewRenderException;
 
-
-class Views
+class View
 {
     protected string $dirPath = __DIR__.'/../../../resources/Templates/';
     private Environment $twig;
@@ -37,15 +37,15 @@ class Views
     private function validate()
     {
         if(!file_exists($this->dirPath.$this->templateName)) {
-            throw new ViewRenderExceptions("File doesn't exist on path ".$this->dirPath.$this->templateName);
+            throw new ViewRenderException("File doesn't exist on path ".$this->dirPath.$this->templateName);
         }
 
         if(!is_readable($this->dirPath.$this->templateName)) {
-            throw new ViewRenderExceptions("File is not readable on path ".$this->dirPath.$this->templateName);
+            throw new ViewRenderException("File is not readable on path ".$this->dirPath.$this->templateName);
         }
 
-        if(!strpos($this->templateName,'.html')) {
-            throw new ViewRenderExceptions();
+        if(!strpos($this->templateName,'.twig')) {
+            throw new ViewRenderException("Templane file must have .twig in extension");
         }
     }
 
