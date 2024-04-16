@@ -9,7 +9,7 @@ class Views
 {
     protected string $dirPath = __DIR__.'/../../../resources/Templates/';
     private Environment $twig;
-    protected string $templateName = 'template.twig';
+    protected string $templateName = 'base.twig';
 
     public function __construct()
     {
