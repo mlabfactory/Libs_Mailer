@@ -134,9 +134,7 @@ class MailerClientService
      */
     public function setBody(ViewInterface $body): self
     {
-        if($this->isHtmlEmail === true) {
-            $this->email->html($body->view());
-        }
+        $this->email->html($body->view());
 
         return $this;
     }

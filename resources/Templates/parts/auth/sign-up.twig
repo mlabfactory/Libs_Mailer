@@ -1,18 +1,18 @@
-{% extends '../../base.twig' %}
+{% extends 'base.twig' %}
 
 {% block content %}
 <div class="container m-10">
 
         <div class="row">
 
-            <p>Hello {{$name}},</p>
+            <p>Hello {{name}},</p>
             <p>Thank you for registering with Budget Control, your home budget management solution. We're thrilled to
                 have you on board and help you effectively manage your household finances.</p>
             <br />
             <p>To complete your registration and activate your email address, please follow the steps below:</p>
-            <p>Click on the following <a href="{{$confirm_link}}">link</a> to activate your email address:</p>
+            <p>Click on the following <a href="{{confirm_link}}">link</a> to activate your email address:</p>
             <br />
-            <a href="{{$confirm_link}}" target="_blank"
+            <a href="{{confirm_link}}" target="_blank"
                 class="mt-5 mb-5 bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded">
                 Confirm Email
             </a>

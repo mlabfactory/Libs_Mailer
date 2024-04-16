@@ -22,13 +22,11 @@ class AuthMail extends Render\View implements ViewInterface
     public function sign_upView()
     {
         $this->templateName = '/parts/auth/sign-up.twig';
-        return $this->view();
     }
 
     public function recovery_passwordView()
     {
         $this->templateName = '/parts/auth/recovery-password.twig';
-        return $this->view();
     }
 
 }
