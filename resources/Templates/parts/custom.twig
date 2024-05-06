@@ -1,0 +1,16 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+<div class="container m-10">
+        <div class="row">
+            <p>Hello {{name}},</p>
+            {{ simple_message ?? ''}}
+        </div>
+        <div class="row mt-5">
+            {{ message ?? ''}}
+            <br />
+            <p>Thank you again for choosing Budget Control!</p>
+            <p>The Budget Control Team</p>
+        </div>
+    </div>
+{% endblock %}

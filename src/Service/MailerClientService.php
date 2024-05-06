@@ -8,8 +8,8 @@ use Budgetcontrol\SdkMailer\Logger\Application\Log\Log;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Exception\TransportException;
-use Budgetcontrol\SdkMailer\Mailer\Exception\MailServiceException;
 use Budgetcontrol\SdkMailer\View\ViewInterface;
+use Budgetcontrol\SdkMailer\Exception\MailServiceException;
 
 /**
  *  mailer service client
@@ -51,7 +51,6 @@ class MailerClientService
             $this->mailer->send($this->email);
             return true;
         } catch (TransportException $e) {
-            Log::error($e->getMessage());
             throw new MailServiceException('Error setting email parameters');
         }
 
@@ -135,9 +134,7 @@ class MailerClientService
      */
     public function setBody(ViewInterface $body): self
     {
-        if($this->isHtmlEmail === true) {
-            $this->email->html($body->view());
-        }
+        $this->email->html($body->view());
 
         return $this;
     }
