@@ -26,7 +26,7 @@ class EmailService
     /**
      * Sends an email.
      *
-     * @param string $to The recipient's email address.
+     * @param array|string $to The recipient's email address.
      * @param string $subject The subject of the email.
      * @param ViewInterface $body The body of the email.
      * @param array $attachments An optional array of file paths to attach to the email.
@@ -34,7 +34,7 @@ class EmailService
      * @param array $bcc An optional array of email addresses to BCC.
      * @return bool Returns true if the email was sent successfully, false otherwise.
      */
-    public function sendEmail(string $to, string $subject, ViewInterface $body, array $attachments = [], array $cc = [], array $bcc = []): bool
+    public function sendEmail(array|string $to, string $subject, ViewInterface $body, array $attachments = [], array $cc = [], array $bcc = []): bool
     {
         $transport = new MailerTransport();
         $dsn = $this->dsn;
@@ -51,6 +51,10 @@ class EmailService
 
         foreach ($bcc as $email) {
             $mailerService->addBcc($email);
+        }
+
+        if(is_array($to)) {
+            $to = implode(',', $to);
         }
 
         // Send email

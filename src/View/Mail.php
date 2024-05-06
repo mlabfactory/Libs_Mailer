@@ -7,7 +7,7 @@ use Twig\Loader\FilesystemLoader;
 class Mail extends Render\View implements ViewInterface
 {
     private array $data;
-    protected string $templateName = 'custom.twig';
+    protected string $templateName = 'parts/custom.twig';
 
     /**
      * Constructor for the Mail class.

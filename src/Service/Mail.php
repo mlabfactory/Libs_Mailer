@@ -7,22 +7,17 @@ use Budgetcontrol\SdkMailer\View\ViewInterface;
 
 class Mail
 {
-    private EmailService $emailService;
     private string $driver = 'mailhog';
     private string $host = 'mailhog';
     private string $user = '';
     private string $password = '';
     private string $emailFromAddress;
 
-    public function __construct()
+    public function sendMail(array|string $emailTo, string $subject, ViewInterface $body, array $attachments = [], array $cc = [], array $bcc = []): void
     {
         $dsn = new Dsn($this->driver, $this->host, $this->user, $this->password);
-        $this->emailService = new EmailService($dsn, $this->emailFromAddress);
-    }
-
-    public function sendMail(string $emailTo, string $subject, ViewInterface $body, array $attachments = [], array $cc = [], array $bcc = []): void
-    {
-        $this->emailService->sendEmail($emailTo, $subject, $body, $attachments, $cc, $bcc);
+        $emailService = new EmailService($dsn, $this->emailFromAddress);
+        $emailService->sendEmail($emailTo, $subject, $body, $attachments, $cc, $bcc);
     }
 
     /**
