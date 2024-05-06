@@ -3,6 +3,7 @@
 namespace Budgetcontrol\SdkMailer\Service;
 
 use Symfony\Component\Mailer\Transport\Dsn;
+use Budgetcontrol\SdkMailer\View\ViewInterface;
 
 class Mail
 {
@@ -17,6 +18,11 @@ class Mail
     {
         $dsn = new Dsn($this->driver, $this->host, $this->user, $this->password);
         $this->emailService = new EmailService($dsn, $this->emailFromAddress);
+    }
+
+    public function sendMail(string $emailTo, string $subject, ViewInterface $body, array $attachments = [], array $cc = [], array $bcc = []): void
+    {
+        $this->emailService->sendEmail($emailTo, $subject, $body, $attachments, $cc, $bcc);
     }
 
     /**
