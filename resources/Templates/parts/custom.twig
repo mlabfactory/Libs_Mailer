@@ -1,0 +1,24 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+<div class="container m-10">
+
+        <div class="row">
+
+            <p>Hello {{name}},</p>
+            {{ simple_message ?? ''}}
+        </div>
+        <div class="row mt-5">
+            {{ message ?? ''}}
+            <br />
+            <p>Thank you again for choosing Budget Control!</p>
+            <p>The Budget Control Team</p>
+        </div>
+        <div class="row">
+            <p class="text-small">This link will work for 2 hours or until you reset your password.<br /><br />Lorem
+                Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                standard dummy text.<br /><br /><strong>Best Regards,</strong><br /><strong>Unlayer Team </strong></p>
+
+        </div>
+    </div>
+{% endblock %}
