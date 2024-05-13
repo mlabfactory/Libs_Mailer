@@ -2,7 +2,7 @@
     "name": "budgetcontrol/libs-mailer",
     "description": "Budget control SDK package mailer",
     "type": "sdk",
-    "version": "1.0",
+    "version": "1.1",
     "require": {
         "php": "^8.2",
         "symfony/mailer": "^7.0",
@@ -22,5 +22,5 @@
             "email": "marco.defelice@budgetcontrol.cloud"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "beta"
 }
