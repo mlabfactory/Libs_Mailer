@@ -29,4 +29,5 @@ class AuthMail extends Render\View implements ViewInterface
         $this->templateName = '/parts/auth/recovery-password.twig';
     }
 
+
 }

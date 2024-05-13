@@ -11,10 +11,15 @@ class View
     private Environment $twig;
     protected string $templateName = 'base.twig';
 
-    public function __construct()
+    public function __construct(?string $dirPath = null)
     {
+        if($dirPath) {
+            $this->dirPath = $dirPath;
+        }
+
         $loader = new FilesystemLoader($this->dirPath);
         $this->twig = new Environment($loader);
+
     }
 
     /**
@@ -58,5 +63,17 @@ class View
     private function setCache(string $cachePath)
     {
         $this->twig->setCache($cachePath);
+    }
+
+    /**
+     * Sets the template name for the view.
+     *
+     * @param string $templateName The name of the template.
+     * @return void
+     */
+    public function setTemplate(string $templateName): self
+    {
+        $this->templateName = $templateName;
+        return $this;
     }
 }
