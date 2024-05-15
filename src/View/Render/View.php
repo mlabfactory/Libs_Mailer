@@ -10,6 +10,7 @@ class View
     protected string $dirPath = __DIR__.'/../../../resources/Templates/';
     private Environment $twig;
     protected string $templateName = 'base.twig';
+    protected array $data = [];
 
     public function __construct(?string $dirPath = null)
     {
@@ -29,7 +30,11 @@ class View
      * @return string The rendered view as a string.
      */
     public function render(array $data = []): string
-    {
+    {   
+        if(empty($data)) {
+            $data = $this->data;
+        }
+
         $this->validate();
         return $this->twig->render($this->templateName, $data);
     }
@@ -75,5 +80,10 @@ class View
     {
         $this->templateName = $templateName;
         return $this;
+    }
+
+    public function setData(array $data): void
+    {
+        $this->data = $data;
     }
 }
