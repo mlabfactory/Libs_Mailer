@@ -1,5 +1,5 @@
 <?php
-namespace Budgetcontrol\SdkMailer\View;
+namespace MLAB\SdkMailer\View;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;

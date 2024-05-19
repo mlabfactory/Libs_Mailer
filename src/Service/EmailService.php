@@ -1,11 +1,11 @@
 <?php
 
-namespace Budgetcontrol\SdkMailer\Service;
+namespace MLAB\SdkMailer\Service;
 
 use Symfony\Component\Mailer\Transport\Dsn;
-use Budgetcontrol\SdkMailer\View\ViewInterface;
-use Budgetcontrol\SdkMailer\Domain\Transport\MailerTransport;
-use Budgetcontrol\SdkMailer\Service\MailerClientService;
+use MLAB\SdkMailer\View\ViewInterface;
+use MLAB\SdkMailer\Domain\Transport\MailerTransport;
+use MLAB\SdkMailer\Service\MailerClientService;
 
 class EmailService
 {

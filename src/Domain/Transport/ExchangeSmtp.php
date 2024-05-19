@@ -1,6 +1,6 @@
 <?php
 
-namespace Budgetcontrol\SdkMailer\Domain\Transport;
+namespace MLAB\SdkMailer\Domain\Transport;
 
 use Psr\Log\LoggerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;

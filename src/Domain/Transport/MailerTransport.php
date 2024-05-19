@@ -1,6 +1,6 @@
 <?php
 
-namespace Budgetcontrol\SdkMailer\Domain\Transport;
+namespace MLAB\SdkMailer\Domain\Transport;
 
 use Monolog\Logger;
 use Symfony\Component\Mailer\Transport\Dsn;

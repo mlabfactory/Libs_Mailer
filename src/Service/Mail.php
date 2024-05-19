@@ -1,9 +1,9 @@
 <?php
 
-namespace Budgetcontrol\SdkMailer\Service;
+namespace MLAB\SdkMailer\Service;
 
 use Symfony\Component\Mailer\Transport\Dsn;
-use Budgetcontrol\SdkMailer\View\ViewInterface;
+use MLAB\SdkMailer\View\ViewInterface;
 
 class Mail
 {

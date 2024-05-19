@@ -1,15 +1,15 @@
 <?php
 
-namespace Budgetcontrol\SdkMailer\Service;
+namespace MLAB\SdkMailer\Service;
 
 use Symfony\Component\Mime\Email;
-use Budgetcontrol\SdkMailer\Logger\Application\Log\Log;
+use MLAB\SdkMailer\Logger\Application\Log\Log;
 
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Exception\TransportException;
-use Budgetcontrol\SdkMailer\View\ViewInterface;
-use Budgetcontrol\SdkMailer\Exception\MailServiceException;
+use MLAB\SdkMailer\View\ViewInterface;
+use MLAB\SdkMailer\Exception\MailServiceException;
 
 /**
  *  mailer service client
