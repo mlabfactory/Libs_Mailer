@@ -2,7 +2,6 @@
     "name": "mlabfactory/libs-mailer",
     "description": "Budget control SDK package mailer",
     "type": "sdk",
-    "version": "1.0.1",
     "require": {
         "php": "^8.2",
         "symfony/mailer": "^7.0",
