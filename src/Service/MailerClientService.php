@@ -36,16 +36,19 @@ class MailerClientService
     /**
      * Sends an email.
      *
-     * @param string $to The recipient's email address.
+     * @param array $to The recipient's email address.
      * @param string $subject The subject of the email.
      * @return bool Returns true if the email was sent successfully, false otherwise.
      * @throws MailServiceException
      */
-    public function send(string $to, string $subject): bool
+    public function send(array $to, string $subject): bool
     {
         $this->email->from($this->from)
-        ->to(new Address($to))
         ->subject($subject);
+
+        foreach ($to as $email) {
+            $this->email->addTo($this->address($email));
+        }
 
         try {
             $this->mailer->send($this->email);
