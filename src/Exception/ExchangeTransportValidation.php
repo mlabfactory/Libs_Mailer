@@ -1,5 +1,5 @@
 <?php
-namespace Budgetcontrol\SdkMailer\Exception;
+namespace MLAB\SdkMailer\Exception;
 
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 

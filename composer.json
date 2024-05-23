@@ -1,8 +1,7 @@
 {
-    "name": "budgetcontrol/libs-mailer",
+    "name": "mlabfactory/libs-mailer",
     "description": "Budget control SDK package mailer",
     "type": "sdk",
-    "version": "1.1",
     "require": {
         "php": "^8.2",
         "symfony/mailer": "^7.0",
@@ -13,13 +12,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Budgetcontrol\\SdkMailer\\": "src/"
+            "MLAB\\SdkMailer\\": "src/"
         }
     },
     "authors": [
         {
             "name": "Marco De Felice",
-            "email": "marco.defelice@budgetcontrol.cloud"
+            "email": "tech@mlabfactory.it"
         }
     ],
     "minimum-stability": "beta"
