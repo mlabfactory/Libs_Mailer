@@ -30,7 +30,7 @@ class MailerClientService
         $this->email = new Email();
         $this->isHtmlEmail = $isHtmlEmail;
         $this->mailer = $mailer;
-        $this->from = new Address($from);
+        $this->from = Address::create($from);
     }
 
     /**
