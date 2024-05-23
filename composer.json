@@ -21,5 +21,5 @@
             "email": "tech@mlabfactory.it"
         }
     ],
-    "minimum-stability": "beta"
+    "minimum-stability": "stable"
 }

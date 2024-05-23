@@ -53,8 +53,8 @@ class EmailService
             $mailerService->addBcc($email);
         }
 
-        if(is_array($to)) {
-            $to = implode(',', $to);
+        if(!is_array($to)) {
+            $to = explode(',', $to);
         }
 
         // Send email
