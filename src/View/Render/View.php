@@ -21,8 +21,8 @@ class View implements ViewInterface
      */
     public function __construct(?string $dirPath = null, ?string $cachePath = null)
     {
-        if (is_null($dirPath)) {
-            $this->dirPath = $dirPath;
+        if (!is_null($dirPath)) {
+            $this->dirPath = realpath($dirPath);
         }
 
         $options = [];
@@ -52,24 +52,7 @@ class View implements ViewInterface
      */
     public function render(array $data = []): string
     {
-        $this->validate();
         return $this->twig->render($this->templateName, $data);
-    }
-
-    /**
-     * Validates the view.
-     *
-     * @return void
-     */
-    private function validate()
-    {
-        if (!$this->twig->getLoader()->exists($this->templateName)) {
-            throw new ViewRenderException("Template file {$this->templateName} does not exist.");
-        }
-
-        if (!str_ends_with($this->templateName, '.twig')) {
-            throw new ViewRenderException("Template file must have a .twig extension");
-        }
     }
 
     /**
