@@ -54,7 +54,7 @@ class MailerClientService
             $this->mailer->send($this->email);
             return true;
         } catch (TransportException $e) {
-            throw new MailServiceException('Error setting email parameters');
+            throw new MailServiceException('Error setting email parameters '.$e->getMessage(), 500);
         }
 
         return false;
