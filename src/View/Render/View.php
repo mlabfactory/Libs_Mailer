@@ -12,9 +12,9 @@ class View implements ViewInterface
     private Environment $twig;
     protected string $templateName = 'base.twig';
 
-    public function __construct(?string $dirPath = null)
+    public function __construct(string|array $dirPath = [])
     {
-        if($dirPath) {
+        if(empty($dirPath)) {
             $this->dirPath = $dirPath;
         }
 
