@@ -5,26 +5,23 @@ namespace MLAB\SdkMailer\View\Render;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use MLAB\SdkMailer\View\ViewInterface;
-use MLAB\SdkMailer\Exception\ViewRenderException;
 
 class View implements ViewInterface
 {
     protected string $dirPath = __DIR__ . '/../../../resources/Templates/';
     private Environment $twig;
     protected string $templateName = 'base.twig';
+    protected array $data = [];
 
     /**
      * Constructs a new View object.
      *
-     * @param string|null $dirPath The directory path for the view files. Defaults to null.
+     * @param string $dirPath The directory path for the view files. Defaults to null.
      * @param string|null $cachePath The directory path for the cached view files. Defaults to null.
      */
-    public function __construct(?string $dirPath = null, ?string $cachePath = null)
+    public function __construct(string $dirPath, ?string $cachePath = null)
     {
-        if (!is_null($dirPath)) {
-            $this->dirPath = realpath($dirPath);
-        }
-
+        $this->dirPath = $dirPath;
         $options = [];
         if (!is_null($cachePath)) {
             $options['cache'] = $cachePath;
@@ -35,30 +32,19 @@ class View implements ViewInterface
     }
 
     /**
-     * Returns the rendered view as a string.
-     *
-     * @return string The rendered view.
-     */
-    public function view(): string
-    {
-        return $this->render();
-    }
-
-    /**
      * Renders the view with the given data.
      *
-     * @param array $data The data to be passed to the view.
      * @return string The rendered view as a string.
      */
-    public function render(array $data = []): string
+    public function render(): string
     {
-        return $this->twig->render($this->templateName, $data);
+        return $this->twig->render($this->templateName, $this->data);
     }
 
     /**
      * Sets the template name for the view.
      *
-     * @param string $templateName The name of the template.
+     * @param string $templateName The name of the template without dir path.
      * @return void
      */
     public function setTemplate(string $templateName): self
@@ -67,6 +53,18 @@ class View implements ViewInterface
             $templateName .= '.twig';
         }
         $this->templateName = $templateName;
+        return $this;
+    }
+
+    /**
+     * Set the value of data
+     *
+     * @return  self
+     */ 
+    public function setData($data): self
+    {
+        $this->data = $data;
+
         return $this;
     }
 }

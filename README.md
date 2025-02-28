@@ -19,11 +19,13 @@ To get started with the library Mailer, follow these steps:
 1. Install the library Mailer package using your preferred package manager:
 
 ## Example
-``
+```
 $data = [
     "name" => "name"
 ];
-$bodyemail = new Mail($data);
+$bodyemail = new Mail();
+$bodyemail->setData($data);
+
 $attachment = [
     [
         'path' => ...,
@@ -41,4 +43,4 @@ $mailer->sendEmail(
     $cc
 );
 
-``
+```
