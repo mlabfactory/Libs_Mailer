@@ -2,10 +2,11 @@
 
 namespace MLAB\SdkMailer\Service;
 
-use Symfony\Component\Mailer\Transport\Dsn;
 use MLAB\SdkMailer\View\ViewInterface;
-use MLAB\SdkMailer\Domain\Transport\MailerTransport;
+use MLAB\SdkMailer\Smtp\SmtpInterfaceModel;
+use Symfony\Component\Mailer\Transport\Dsn;
 use MLAB\SdkMailer\Service\MailerClientService;
+use MLAB\SdkMailer\Domain\Transport\MailerTransport;
 
 class EmailService
 {
@@ -17,9 +18,16 @@ class EmailService
      *
      * @param Dsn $dsn The DSN object representing the email service configuration. Example: new Dsn('mailhog', 'mailhog', '','');
      */
-    public function __construct(Dsn $dsn, string $from)
+    public function __construct(SmtpInterfaceModel $smtpTransfer, string $from)
     {
-        $this->dsn = $dsn;
+        $this->dsn = new Dsn(
+            $smtpTransfer->getScheme(),
+            $smtpTransfer->getHost(),
+            $smtpTransfer->getUsername(),
+            $smtpTransfer->getPassword(),
+            $smtpTransfer->getPort(),
+            $smtpTransfer->getOptions()
+        );
         $this->from = $from;
     }
 

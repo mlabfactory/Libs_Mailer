@@ -23,24 +23,15 @@ To get started with the library Mailer, follow these steps:
 $data = [
     "name" => "name"
 ];
-$bodyemail = new Mail();
+$bodyemail = new \MLAB\SdkMailer\View\Mail();
 $bodyemail->setData($data);
 
-$attachment = [
-    [
-        'path' => ...,
-        'name' => ...
-    ]
-];
-
-$dsn = new Dsn(env('MAIL_SCHEME', 'mailhog'), env('MAIL_HOST', 'mailhog'), '', '');
-$mailer = new EmailService($dsn);
+$smpt = new \MLAB\SdkMailer\Smtp\Mailhog();
+$mailer = new \MLAB\SdkMailer\Service\EmailService($smpt, 'test@example.com');
 $mailer->sendEmail(
-    $to,
-    $subject,
-    $bodyemail,
-    $attachment,
-    $cc
+    'test@example.com',
+    'Test Email',
+    $bodyemail
 );
 
 ```

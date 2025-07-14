@@ -4,6 +4,7 @@ namespace MLAB\SdkMailer\Domain\Transport;
 
 use Monolog\Logger;
 use Symfony\Component\Mailer\Transport\Dsn;
+use MLAB\SdkMailer\Service\TransportSmtpService;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mailer\Transport\AbstractTransportFactory;
 use Symfony\Component\Mailer\Exception\UnsupportedSchemeException;
@@ -32,7 +33,7 @@ class MailerTransport extends AbstractTransportFactory
 
     protected function getSupportedSchemes(): array
     {
-        return ['exchange','mailhog', 'aruba'];
+        return ['smtp', 'smtps'];
     }
 
     /**
@@ -42,22 +43,13 @@ class MailerTransport extends AbstractTransportFactory
     public function create(Dsn $dsn): TransportInterface
     {
         $scheme = $dsn->getScheme();
-        $user = $this->getUser($dsn);
-        $password = $this->getPassword($dsn);
-        $host = 'default' === $dsn->getHost() ? null : $dsn->getHost();
-        $sandbox = filter_var($dsn->getOption('sandbox', false), \FILTER_VALIDATE_BOOL);
 
-        switch ($scheme) {
-            case 'exchange':
-                return new ExchangeSmtp($host, $user, $password, $this->port, $this->tls, null, $this->logger);
-            case 'mailhog':
-                return new MailhogSmtp($host, $user, $password, 1025, false);
-            case 'aruba':
-                return new ArubaSmtp($host, $user, $password, 465, 'tls', $this->logger);
+        if(!in_array($scheme, $this->getSupportedSchemes(), true)) {
+            throw new UnsupportedSchemeException($dsn, sprintf('The "%s" scheme is not supported; supported schemes are: "%s".', $scheme, implode('", "', $this->getSupportedSchemes())));
         }
 
+        return new TransportSmtpService($dsn);
 
-        throw new UnsupportedSchemeException($dsn, $scheme, $this->getSupportedSchemes());
     }
 
 

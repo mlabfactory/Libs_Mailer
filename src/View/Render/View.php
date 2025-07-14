@@ -8,7 +8,7 @@ use MLAB\SdkMailer\View\ViewInterface;
 
 class View implements ViewInterface
 {
-    protected string $dirPath = __DIR__ . '/../../../resources/Templates/';
+    protected string $dirPath;
     private Environment $twig;
     protected string $templateName = 'base.twig';
     protected array $data = [];
@@ -19,7 +19,7 @@ class View implements ViewInterface
      * @param string $dirPath The directory path for the view files. Defaults to null.
      * @param string|null $cachePath The directory path for the cached view files. Defaults to null.
      */
-    public function __construct(string $dirPath, ?string $cachePath = null)
+    public function __construct(string $dirPath = __DIR__ . '/../../../resources/Templates/', ?string $cachePath = null)
     {
         $this->dirPath = $dirPath;
         $options = [];
