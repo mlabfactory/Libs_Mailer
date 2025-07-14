@@ -31,6 +31,11 @@ class View implements ViewInterface
         $this->twig = new Environment($loader,$options);
     }
 
+    public function view(): string
+    {
+        return $this->render();
+    }
+
     /**
      * Renders the view with the given data.
      *

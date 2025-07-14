@@ -25,4 +25,15 @@ interface ViewInterface
      * @return self Returns the instance of the implementing class.
      */
     public function setData($data): self;
+
+    /**
+     * Method to render the view.
+     *
+     * This method should be implemented to output the view content
+     * as a string, which can then be used for email templates
+     * or other rendering purposes.
+     *
+     * @return string The rendered view content
+     */
+    public function view(): string;
 }
