@@ -22,6 +22,14 @@ final class Exchange implements SmtpInterfaceModel
         $this->password = $password;
         $this->encryption = $encryption;
         $this->options = $options;
+
+        if($encryption === 'tls' || $port === 587) {
+            $this->scheme = 'smtps';
+        } elseif ($encryption === 'ssl' || $port === 465) {
+            $this->scheme = 'smtps';
+        } else {
+            $this->scheme = 'smtp';
+        }
     }
 
     public function getHost(): string
